@@ -1,14 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 104 64" role="img" aria-labelledby="title">
   <title id="title">TRA</title>
-  <rect width="64" height="64" rx="8" fill="#f2f0e9"/>
-  <g fill="#20231f" opacity=".22" transform="translate(2 2)">
-    <path d="M5 11h18v6h-6v29h-7V17H5zm19 0h17v6h5v15h-5v5h5v9h-8V35h-7v11h-7zm8 7v10h7V18zM51 9h6v6h-6zM46 15h6v6h-6zm11 0h6v6h-6zM46 21h6v6h-6zm11 0h6v6h-6zM46 27h17v6H46zm0 6h6v6h-6zm11 0h6v6h-6zM46 39h6v6h-6zm11 0h6v6h-6zM46 45h6v6h-6zm11 0h6v6h-6z"/>
+  <rect width="104" height="64" fill="#050505"/>
+  <g transform="translate(4 11) skewX(-7) rotate(-2 48 21)" fill="#7f1824">
+    <path d="M0 0h30v6H0zM12 6h6v36h-6z"/>
+    <path d="M34 0h24v6H40v6h18v12h-6v6h-6v6h6v6h6v6h-6v-6h-6v-6h-6v-6h-6v18h-6zM40 18v6h12v-6z"/>
+    <path d="M78 0h6v6h-6zM72 6h6v6h-6zm18 0h6v6h-6zM72 12h6v6h-6zm18 0h6v6h-6zM66 18h6v6h-6zm24 0h6v6h-6zM66 24h30v6H66zM66 30h6v6h-6zm24 0h6v6h-6zM66 36h6v6h-6zm24 0h6v6h-6z"/>
   </g>
-  <g fill="#e44d32">
-    <path d="M3 9h18v6h-6v29H8V15H3z" transform="rotate(-2 12 26)"/>
-    <path d="M24 10h17v6h5v15h-5v5h5v9h-8V34h-7v11h-7zm8 7v10h7V17z" transform="rotate(1 35 28)"/>
-    <!-- Pixel A: peaked top, diagonal shoulders, crossbar, and two legs. -->
-    <path d="M51 9h6v6h-6zM46 15h6v6h-6zm11 0h6v6h-6zM46 21h6v6h-6zm11 0h6v6h-6zM46 27h17v6H46zm0 6h6v6h-6zm11 0h6v6h-6zM46 39h6v6h-6zm11 0h6v6h-6zM46 45h6v6h-6zm11 0h6v6h-6z" transform="rotate(-1 54 30)"/>
+  <g transform="translate(2 9) skewX(-7) rotate(-2 48 21)" fill="#ff3547">
+    <!-- T -->
+    <path d="M0 0h30v6H0zM12 6h6v36h-6z"/>
+    <!-- R -->
+    <path d="M34 0h24v6H40v6h18v12h-6v6h-6v6h6v6h6v6h-6v-6h-6v-6h-6v-6h-6v18h-6zM40 18v6h12v-6z"/>
+    <!-- A: pointed top, slanted shoulders, crossbar, and two legs -->
+    <path d="M78 0h6v6h-6zM72 6h6v6h-6zm18 0h6v6h-6zM72 12h6v6h-6zm18 0h6v6h-6zM66 18h6v6h-6zm24 0h6v6h-6zM66 24h30v6H66zM66 30h6v6h-6zm24 0h6v6h-6zM66 36h6v6h-6zm24 0h6v6h-6z"/>
   </g>
-  <path d="M4 56h54" stroke="#e44d32" stroke-width="3" stroke-dasharray="5 3"/>
 </svg>
