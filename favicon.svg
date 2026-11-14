@@ -1,13 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
   <title id="title">TRA</title>
   <rect width="64" height="64" rx="8" fill="#f2f0e9"/>
-  <g fill="#20231f" opacity=".22" transform="translate(3 3)">
-    <path d="M5 11h18v6h-6v29h-7V17H5zm19 0h17v6h5v15h-5v5h5v9h-8V35h-7v11h-7zm8 7v10h7V18zM45 11h14v6h-9v7h8v6h-8v7h9v9H45z"/>
+  <g fill="#20231f" opacity=".22" transform="translate(2 2)">
+    <path d="M5 11h18v6h-6v29h-7V17H5zm19 0h17v6h5v15h-5v5h5v9h-8V35h-7v11h-7zm8 7v10h7V18zM51 9h6v6h-6zM46 15h6v6h-6zm11 0h6v6h-6zM46 21h6v6h-6zm11 0h6v6h-6zM46 27h17v6H46zm0 6h6v6h-6zm11 0h6v6h-6zM46 39h6v6h-6zm11 0h6v6h-6zM46 45h6v6h-6zm11 0h6v6h-6z"/>
   </g>
   <g fill="#e44d32">
     <path d="M3 9h18v6h-6v29H8V15H3z" transform="rotate(-2 12 26)"/>
     <path d="M24 10h17v6h5v15h-5v5h5v9h-8V34h-7v11h-7zm8 7v10h7V17z" transform="rotate(1 35 28)"/>
-    <path d="M45 9h15v6h-9v7h8v6h-8v7h9v9H45z" transform="rotate(-1 52 27)"/>
+    <!-- Pixel A: peaked top, diagonal shoulders, crossbar, and two legs. -->
+    <path d="M51 9h6v6h-6zM46 15h6v6h-6zm11 0h6v6h-6zM46 21h6v6h-6zm11 0h6v6h-6zM46 27h17v6H46zm0 6h6v6h-6zm11 0h6v6h-6zM46 39h6v6h-6zm11 0h6v6h-6zM46 45h6v6h-6zm11 0h6v6h-6z" transform="rotate(-1 54 30)"/>
   </g>
-  <path d="M4 50h54" stroke="#e44d32" stroke-width="3" stroke-dasharray="5 3"/>
+  <path d="M4 56h54" stroke="#e44d32" stroke-width="3" stroke-dasharray="5 3"/>
 </svg>
