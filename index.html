@@ -1,110 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#f2f0e9" />
-    <meta name="description" content="TheRealArchitect — an independent portfolio exploring form, structure, and digital spaces." />
-    <title>TheRealArchitect — Independent by design</title>
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@300;400;900&family=Righteous&display=swap" rel="stylesheet" />
-    <style>
-      :root { color-scheme: light; --paper: #f2f0e9; --ink: #20231f; --muted: #686b63; --line: #c9c8bf; --accent: #e44d32; --blue: #a8c7c7; --display: "Londrina Solid", sans-serif; --sans: "Righteous", sans-serif; }
-      *, *::before, *::after { box-sizing: border-box; }
-      html { scroll-behavior: smooth; }
-      body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); }
-      a { color: inherit; }
-      a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; }
-      .page { width: min(1440px, 100% - 64px); margin: 0 auto; }
-      .masthead { min-height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 24px; border-bottom: 2px solid var(--ink); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; }
-      .wordmark { font-weight: 400; text-decoration: none; white-space: nowrap; }
-      .masthead-note { color: var(--muted); }
-      .masthead-links { display: flex; align-items: center; gap: clamp(14px, 2.5vw, 32px); }
-      .masthead-link { text-decoration-thickness: 2px; text-underline-offset: 4px; white-space: nowrap; }
-      .masthead-link[aria-current="page"] { color: var(--accent); }
-      .gamify-link { padding: 10px 12px; border: 2px solid var(--ink); background: #e9c75d; color: var(--ink); font-family: "Press Start 2P", monospace; font-size: 9px; line-height: 1.6; box-shadow: 3px 3px 0 var(--ink); cursor: pointer; }
-      .hero { min-height: min(760px, calc(100svh - 82px)); display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(280px, .95fr); align-items: center; gap: clamp(32px, 7vw, 110px); padding: 70px 0; }
-      .eyebrow, .section-index { margin: 0 0 24px; color: var(--accent); font-size: .7rem; font-weight: 400; letter-spacing: .16em; text-transform: uppercase; }
-      h1 { max-width: 760px; margin: 0; font-family: var(--display); font-size: clamp(4rem, 9.3vw, 9.5rem); font-weight: 400; letter-spacing: .01em; line-height: .84; }
-      h1 span { color: var(--accent); }
-      .intro-copy { max-width: 430px; margin: 32px 0 0; color: var(--muted); font-size: clamp(1rem, 1.35vw, 1.18rem); line-height: 1.7; }
-      .hero-link { display: inline-flex; gap: 14px; align-items: center; margin-top: 30px; font-size: .78rem; letter-spacing: .08em; text-decoration-thickness: 2px; text-underline-offset: 5px; }
-      .hero-link span { color: var(--accent); font-size: 1.2rem; }
-      .drawing { position: relative; min-height: 410px; aspect-ratio: 1 / 1.05; overflow: hidden; border: 4px solid var(--ink); background: var(--blue); box-shadow: 8px 8px 0 var(--accent); }
-      .drawing::before, .drawing::after { position: absolute; content: ""; border: 2px solid rgba(32,35,31,.5); pointer-events: none; }
-      .drawing::before { inset: 7%; } .drawing::after { inset: 13%; }
-      .drawing svg, .practice-art svg { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; shape-rendering: crispEdges; }
-      .drawing-caption { position: absolute; right: 9%; bottom: 8%; z-index: 1; color: var(--ink); font-size: .63rem; letter-spacing: .12em; text-transform: uppercase; }
-      .tabs-section { padding: 28px 0 78px; border-top: 2px solid var(--ink); }
-      .tabs-heading, .work-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 24px; }
-      .tabs-heading h2, .work-heading h2 { margin: 0; font-family: var(--display); font-size: clamp(2.6rem, 5vw, 5rem); font-weight: 400; }
-      .tabs-heading p, .work-heading p { max-width: 340px; margin: 0 0 8px; color: var(--muted); font-size: .82rem; line-height: 1.6; }
-      .tab-list { display: flex; gap: 8px; overflow-x: auto; padding: 5px 5px 12px; border-bottom: 2px solid var(--ink); }
-      .tab-button { flex: 0 0 auto; padding: 12px 18px; border: 2px solid var(--ink); background: transparent; color: var(--ink); font: inherit; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; }
-      .tab-button[aria-selected="true"] { background: var(--ink); color: var(--paper); }
-      .tab-panel { min-height: 210px; padding: clamp(26px, 5vw, 54px); border: 2px solid var(--ink); border-top: 0; background: #e6d9cd; }
-      .tab-panel[hidden] { display: none; }
-      .tab-panel[data-panel="games"] { background: #e9c75d; } .tab-panel[data-panel="repositories"] { background: var(--blue); }
-      .tab-panel h3 { margin: 0 0 12px; font-family: var(--display); font-size: clamp(2.3rem, 4vw, 3.8rem); font-weight: 400; }
-      .tab-panel p { max-width: 620px; margin: 0; color: rgba(32,35,31,.78); line-height: 1.7; }
-      .tab-links { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-top: 24px; }
-      .tab-links a { font-size: .75rem; letter-spacing: .06em; text-decoration-thickness: 2px; text-underline-offset: 4px; }
-      .work { padding: 28px 0 100px; border-top: 2px solid var(--ink); }
-      .practice { display: grid; grid-template-columns: 1fr 1fr; min-height: 340px; border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); }
-      .practice-art { position: relative; min-height: 300px; overflow: hidden; border-right: 2px solid var(--ink); background: #e6d9cd; }
-      .practice-info { display: flex; flex-direction: column; justify-content: center; padding: clamp(28px, 6vw, 84px); }
-      .practice-type { margin: 0 0 18px; color: var(--accent); font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; }
-      .practice h3 { margin: 0; font-family: var(--display); font-size: clamp(2.6rem, 5vw, 5rem); font-weight: 400; }
-      .practice-info > p:not(.practice-type) { max-width: 400px; color: var(--muted); line-height: 1.7; }
-      .footer { display: flex; justify-content: space-between; gap: 20px; padding: 22px 0 30px; border-top: 2px solid var(--ink); color: var(--muted); font-size: .7rem; letter-spacing: .08em; }
-      .game-shell[hidden], .tv-intro[hidden], .taskbar[hidden] { display: none !important; }
-      .game-shell { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; padding: 20px; background: rgba(13,15,20,.78); }
-      .tv-intro { position: absolute; inset: 0; z-index: 2; display: grid; place-items: center; overflow: hidden; background: #080808; color: #f5f2e7; text-align: center; isolation: isolate; }
-      .tv-intro::before { position: absolute; inset: -40%; z-index: -1; content: ""; background: repeating-linear-gradient(0deg,transparent 0 2px,rgba(255,255,255,.28) 3px,transparent 4px 6px), repeating-linear-gradient(90deg,rgba(255,0,50,.13) 0 2px,rgba(0,255,220,.13) 3px 4px,transparent 5px 8px), radial-gradient(ellipse at center,transparent 20%,rgba(0,0,0,.9)); animation: tv-roll .12s steps(2) infinite; }
-      .tv-intro::after { position: absolute; inset: 0; z-index: -1; content: ""; background: repeating-linear-gradient(0deg,transparent 0 3px,rgba(255,255,255,.1) 4px,transparent 5px 8px); mix-blend-mode: screen; animation: tv-flicker .08s steps(2) infinite; }
-      .tv-intro.is-fading { animation: tv-off .14s steps(3) both; }
-      .tv-copy { z-index: 1; padding: 24px; font-family: "Press Start 2P", monospace; font-size: clamp(12px,2.5vw,22px); line-height: 2.1; text-shadow: 3px 0 #f55,-3px 0 #5ff; animation: tv-jump .15s steps(2) infinite; }
-      .tv-copy small { display: block; margin-top: 12px; font-size: 9px; }
-      .game-window { position: relative; display: flex; width: min(900px,100%); height: min(700px,calc(100vh - 40px)); flex-direction: column; border: 3px solid var(--ink); background: var(--paper); box-shadow: 9px 9px rgba(0,0,0,.4); animation: window-in .2s steps(4) both; }
-      .game-titlebar { display: flex; min-height: 54px; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 12px; border-bottom: 3px solid var(--ink); background: var(--yellow); }
-      .game-title { font-family: var(--pixel); font-size: 10px; line-height: 1.8; } .window-buttons { display: flex; gap: 6px; }
-      .window-control { width: 34px; height: 32px; border: 2px solid var(--ink); background: var(--paper); font: inherit; font-size: 20px; cursor: pointer; }
-      .game-frame { width: 100%; min-height: 0; flex: 1; border: 0; background: #111; }
-      .game-status { display: flex; justify-content: space-between; gap: 12px; padding: 7px 12px; border-top: 2px solid var(--ink); font-size: 17px; }
-      .game-status a { color: var(--accent); } .game-window.is-maximized { width: 100%; height: 100%; border: 0; }
-      .game-shell.is-minimized { inset: auto 16px 70px auto; display: block; width: min(320px,calc(100vw - 32px)); height: auto; padding: 0; background: transparent; }
-      .game-shell.is-minimized .game-window { display: none; }
-      .taskbar { position: fixed; right: 16px; bottom: 16px; z-index: 21; padding: 10px 14px; border: 2px solid var(--ink); background: var(--yellow); font-family: var(--pixel); font-size: 9px; line-height: 1.7; cursor: pointer; box-shadow: 4px 4px var(--ink); }
-      @keyframes tv-roll { to { transform: translateY(6px); } } @keyframes tv-flicker { 50% { opacity: .55; } } @keyframes tv-jump { 50% { transform: translateX(2px); } } @keyframes tv-off { 0% { opacity: 1; transform: scaleY(1); } 55% { opacity: 1; transform: scaleY(.015); } 100% { opacity: 0; transform: scaleY(0); } } @keyframes window-in { from { transform: scale(.94); opacity: .4; } to { transform: scale(1); opacity: 1; } }
-      @media (max-width:760px) { .page { width: min(100% - 36px,620px); } .masthead { min-height: 68px; flex-wrap: wrap; padding: 12px 0; } .masthead-note { display: none; } .masthead-links { gap: 12px; font-size: .62rem; } .gamify-link { padding: 8px; font-size: 8px; } .hero { min-height: auto; grid-template-columns: 1fr; gap: 48px; padding: 74px 0 82px; } h1 { font-size: clamp(4rem,18vw,7rem); } .drawing { width: min(100%,470px); min-height: 0; justify-self: end; } .tabs-heading,.work-heading { align-items: flex-start; flex-direction: column; gap: 8px; } .practice { grid-template-columns: 1fr; } .practice-art { min-height: 260px; border-right: 0; border-bottom: 2px solid var(--ink); } .practice-info { padding: 34px 26px 40px; } .footer { flex-direction: column; gap: 10px; } .game-shell { padding: 10px; } .game-window { height: min(680px,calc(100vh - 20px)); } .game-title { font-size: 8px; } .game-shell.is-minimized { right: 10px; bottom: 64px; } .taskbar { right: 10px; bottom: 10px; } }
-      @media (max-width:410px) { .masthead-links { gap: 8px; font-size: .55rem; letter-spacing: .04em; } .masthead-links .masthead-link:nth-child(2) { display: none; } .game-status { font-size: 15px; } }
-      @media (prefers-reduced-motion:reduce) { html { scroll-behavior: auto; } *,*::before,*::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; } }
-    </style>
-  </head>
-  <body>
-    <div class="page">
-      <header class="masthead"><a class="wordmark" href="#top">TheRealArchitect</a><span class="masthead-note">Independent design &amp; concepts</span><nav class="masthead-links" aria-label="Main navigation"><a class="masthead-link" href="#top" aria-current="page">Home</a><a class="masthead-link" href="#tabs">Tabs</a><a class="masthead-link" href="projects.html">Projects</a><button class="gamify-link" id="open-game" type="button">Gamify The Portfolio</button><a class="masthead-link" href="https://github.com/therealarchitect-official">GitHub ↗</a></nav></header>
-      <main id="top">
-        <section class="hero" aria-labelledby="hero-title"><div><p class="eyebrow">A portfolio by TheRealArchitect</p><h1 id="hero-title">Design in <span>structure.</span></h1><p class="intro-copy">Exploring the form and feeling of digital spaces through thoughtful concepts, clear systems, and a little architectural imagination.</p><a class="hero-link" href="#work">The approach <span aria-hidden="true">↓</span></a></div><div class="drawing" role="img" aria-label="Abstract architectural study of layered geometric forms"><svg viewBox="0 0 600 630" aria-hidden="true" focusable="false"><g fill="none" stroke="#20231f" stroke-width="1.3" opacity=".8"><path d="M300 75 476 177 476 382 300 484 124 382 124 177Z"/><path d="M300 75v205m176-103L300 280 124 177m0 205 176-102 176 102M300 280v204"/><path d="m188 140 224 129v96L188 236Zm0 192 224-129m-224 67 224 129"/><path d="M90 515h420M90 535h420M300 42v548" opacity=".42"/></g><path d="m300 75 176 102-176 103-176-103Z" fill="#f2f0e9" fill-opacity=".42"/><path d="m300 280 176 102-176 102-176-102Z" fill="#e44d32" fill-opacity=".78"/><path d="M300 280v204" fill="none" stroke="#20231f" stroke-width="1.3"/><circle cx="300" cy="280" r="5" fill="#20231f"/></svg><span class="drawing-caption">Study 01 — form / space</span></div></section>
-        <section class="tabs-section" id="tabs" aria-labelledby="tabs-title"><div class="tabs-heading"><div><p class="section-index">Explore / By interest</p><h2 id="tabs-title">A little of everything.</h2></div><p>Concepts, games, projects, repositories, and other things worth exploring.</p></div><div class="tab-list" role="tablist" aria-label="Explore portfolio categories"><button class="tab-button" id="tab-concepts" type="button" role="tab" aria-selected="true" aria-controls="panel-concepts" tabindex="0">Concepts</button><button class="tab-button" id="tab-games" type="button" role="tab" aria-selected="false" aria-controls="panel-games" tabindex="-1">Games</button><button class="tab-button" id="tab-repositories" type="button" role="tab" aria-selected="false" aria-controls="panel-repositories" tabindex="-1">Repositories</button></div>
-          <section class="tab-panel" id="panel-concepts" data-panel="concepts" role="tabpanel" aria-labelledby="tab-concepts" tabindex="0"><h3>Ideas take shape.</h3><p>Digital spaces, interfaces, and experiments start with a concept. Explore a vision for a new operating system or browse the full collection.</p><div class="tab-links"><a href="https://fried-guess-12209322.figma.site" target="_blank" rel="noopener noreferrer">ZenithOS Concept ↗</a><a href="projects.html">All projects ↗</a></div></section>
-          <section class="tab-panel" id="panel-games" data-panel="games" role="tabpanel" aria-labelledby="tab-games" tabindex="0" hidden><h3>Play with an idea.</h3><p>Small games, odd creatures, and endlessly clickable experiments. Pick one and see where it leads.</p><div class="tab-links"><a href="https://therealarchitect-official.github.io/boredom-slasher/" target="_blank" rel="noopener noreferrer">Boredom Slasher ↗</a><a href="projects.html">More games ↗</a></div></section>
-          <section class="tab-panel" id="panel-repositories" data-panel="repositories" role="tabpanel" aria-labelledby="tab-repositories" tabindex="0" hidden><h3>Built in the open.</h3><p>Projects grow through experiments, code, and repositories. Visit GitHub to explore the work behind the ideas.</p><div class="tab-links"><a href="https://github.com/therealarchitect-official" target="_blank" rel="noopener noreferrer">Explore GitHub ↗</a><a href="projects.html">Browse projects ↗</a></div></section>
-        </section>
-        <section class="work" id="work" aria-labelledby="work-title"><div class="work-heading"><div><p class="section-index">01 / Point of view</p><h2 id="work-title">A different blueprint.</h2></div><p>Original thinking, not borrowed templates.</p></div><article class="practice"><div class="practice-art" aria-hidden="true"><svg viewBox="0 0 600 400" focusable="false"><g fill="none" stroke="#20231f" stroke-width="1.2" opacity=".72"><path d="M66 317 182 83l103 143 78-106 171 197M66 317h468M182 83v234m103-91v91m78-197v197"/><path d="M99 250h401M133 182h359M182 112h219" stroke-dasharray="3 7"/><circle cx="182" cy="83" r="7" fill="#e44d32" stroke="none"/><circle cx="363" cy="120" r="7" fill="#e44d32" stroke="none"/></g></svg></div><div class="practice-info"><p class="practice-type">The practice · 01</p><h3>Independent by design.</h3><p>This space is for original ideas and experiments in digital form. The work here should have its own point of view—thoughtful, curious, and always evolving.</p></div></article></section>
-      </main><footer class="footer"><span>© TheRealArchitect</span><span>Designed with intention.</span></footer>
-    </div>
-    <section class="game-shell" id="game-shell" aria-label="Boredom Slasher multitasking window" hidden><div class="tv-intro" id="tv-intro" aria-hidden="true" hidden><div class="tv-copy">NOW TUNING IN<small>PLEASE STAND BY</small></div></div><div class="game-window" id="game-window" role="dialog" aria-modal="true" aria-labelledby="game-window-title"><header class="game-titlebar"><span class="game-title" id="game-window-title">BOREDOM SLASHER — GAME WINDOW</span><div class="window-buttons"><button class="window-control" id="minimize-game" type="button" aria-label="Minimize game window">−</button><button class="window-control" id="maximize-game" type="button" aria-label="Maximize game window" aria-pressed="false">□</button><button class="window-control" id="close-game" type="button" aria-label="Close game window">×</button></div></header><iframe class="game-frame" id="game-frame" title="Boredom Slasher game" data-src="https://therealarchitect-official.github.io/boredom-slasher/" allow="fullscreen; gamepad" referrerpolicy="strict-origin-when-cross-origin"></iframe><footer class="game-status"><span>ONE WINDOW / MULTITASK MODE</span><a href="https://therealarchitect-official.github.io/boredom-slasher/" target="_blank" rel="noopener noreferrer">Open separately ↗</a></footer></div></section>
-    <button class="taskbar" id="restore-game" type="button" hidden>▶ BOREDOM SLASHER — RESTORE</button>
-    <script>
-      const tabs=Array.from(document.querySelectorAll('[role="tab"]'));const panels=Array.from(document.querySelectorAll('[role="tabpanel"]'));function activateTab(tab,moveFocus=false){tabs.forEach(item=>{const selected=item===tab;item.setAttribute('aria-selected',String(selected));item.tabIndex=selected?0:-1});panels.forEach(panel=>{panel.hidden=panel.id!==tab.getAttribute('aria-controls')});if(moveFocus)tab.focus()}tabs.forEach((tab,index)=>{tab.addEventListener('click',()=>activateTab(tab));tab.addEventListener('keydown',event=>{let next=index;if(event.key==='ArrowRight')next=(index+1)%tabs.length;else if(event.key==='ArrowLeft')next=(index-1+tabs.length)%tabs.length;else if(event.key==='Home')next=0;else if(event.key==='End')next=tabs.length-1;else return;event.preventDefault();activateTab(tabs[next],true)})});
-      const openGame=document.querySelector('#open-game'),shell=document.querySelector('#game-shell'),intro=document.querySelector('#tv-intro'),gameWindow=document.querySelector('#game-window'),frame=document.querySelector('#game-frame'),minimize=document.querySelector('#minimize-game'),maximize=document.querySelector('#maximize-game'),close=document.querySelector('#close-game'),restore=document.querySelector('#restore-game');let introTimer,fadeTimer;
-      function clearIntroTimers(){clearTimeout(introTimer);clearTimeout(fadeTimer)}function dismissIntro(){clearIntroTimers();intro.hidden=true;intro.classList.remove('is-fading')}
-      function openGameWindow(){clearIntroTimers();shell.hidden=false;shell.classList.remove('is-minimized');restore.hidden=true;intro.hidden=false;intro.classList.remove('is-fading');if(!frame.src)frame.src=frame.dataset.src;close.focus();introTimer=setTimeout(()=>{intro.classList.add('is-fading');fadeTimer=setTimeout(dismissIntro,140)},860)}
-      function closeGameWindow(){dismissIntro();shell.hidden=true;shell.classList.remove('is-minimized');restore.hidden=true;gameWindow.classList.remove('is-maximized');maximize.setAttribute('aria-pressed','false');maximize.setAttribute('aria-label','Maximize game window');maximize.textContent='□';openGame.focus()}
-      openGame.addEventListener('click',openGameWindow);close.addEventListener('click',closeGameWindow);minimize.addEventListener('click',()=>{dismissIntro();shell.classList.add('is-minimized');restore.hidden=false;restore.focus()});restore.addEventListener('click',()=>{shell.classList.remove('is-minimized');restore.hidden=true;close.focus()});maximize.addEventListener('click',()=>{const isMaximized=gameWindow.classList.toggle('is-maximized');maximize.setAttribute('aria-pressed',String(isMaximized));maximize.setAttribute('aria-label',isMaximized?'Restore game window':'Maximize game window');maximize.textContent=isMaximized?'❐':'□'});shell.addEventListener('click',event=>{if(event.target===shell)closeGameWindow()});document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!shell.hidden)closeGameWindow()});
-    </script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050505">
+  <meta name="description" content="TheRealArchitect — three portfolios, one terminal. Explore web projects, Geometry Dash, and Munet Dash.">
+  <title>TheRealArchitect // Terminal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #050505;
+      --panel: #090909;
+      --fg: #ff2a2a;
+      --dim: #bd2424;
+      --accent: #ff6868;
+      --line: #702020;
+      --glow: rgba(255, 42, 42, .48);
+      --font: "VT323", monospace;
+      --pixel: "Press Start 2P", monospace;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 22px; text-shadow: 0 0 7px var(--glow); }
+    body[data-theme="gd"] { --bg: #04090b; --panel: #071114; --fg: #50f6f2; --dim: #71b9aa; --accent: #ffd44f; --line: #216d69; --glow: rgba(80, 246, 242, .43); }
+    body[data-theme="md"] { --bg: #08050d; --panel: #100a18; --fg: #d7a8ff; --dim: #a87bd1; --accent: #ffcf69; --line: #654282; --glow: rgba(215, 168, 255, .45); }
+    a { color: var(--accent); text-underline-offset: 4px; }
+    a:hover { color: var(--fg); }
+    button, input { color: inherit; font: inherit; }
+    .crt { position: fixed; inset: 0; z-index: 5; pointer-events: none; opacity: .14; background: repeating-linear-gradient(to bottom, transparent 0 2px, #000 3px 4px); }
+    .crt::after { position: absolute; inset: 0; content: ""; background: radial-gradient(ellipse at center, transparent 55%, #000 115%); }
+    .shell { width: min(940px, calc(100% - 32px)); min-height: 100vh; margin: auto; padding: 28px 0 32px; display: flex; flex-direction: column; }
+    .topbar { display: flex; justify-content: space-between; gap: 16px; padding: 0 0 14px; border-bottom: 1px solid var(--line); font-size: 18px; }
+    .brand { color: var(--accent); letter-spacing: 2px; }
+    .status { color: var(--dim); text-align: right; }
+    .screen { flex: 1; min-height: 310px; padding: 18px 4px; overflow-wrap: anywhere; }
+    .line { margin: 0 0 8px; white-space: pre-wrap; line-height: 1.17; }
+    .banner { color: var(--accent); font-size: clamp(12px, 2.5vw, 21px); line-height: 1.2; text-shadow: 0 0 10px var(--glow); }
+    .guide { margin: 18px 0 10px; color: var(--dim); }
+    .command-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 5px 0 14px; }
+    .cmd { border: 1px solid var(--line); background: var(--panel); color: var(--accent); padding: 4px 9px; cursor: pointer; font-size: 20px; text-shadow: inherit; }
+    .cmd:hover, .cmd:focus-visible { background: var(--fg); color: var(--bg); outline: none; }
+    .output { padding: 14px 0; border-top: 1px dashed var(--line); }
+    .output h2 { margin: 4px 0 12px; color: var(--accent); font: 12px/1.8 var(--pixel); }
+    .output h3 { margin: 15px 0 4px; color: var(--accent); font-size: 24px; }
+    .output p { margin: 5px 0 10px; line-height: 1.25; }
+    .output ul { margin: 5px 0 14px; padding-left: 25px; }
+    .output li { margin: 4px 0; }
+    .input-area { display: flex; align-items: center; gap: 10px; padding: 11px 4px 0; border-top: 1px solid var(--line); }
+    .prompt { color: var(--accent); }
+    #command-input { min-width: 0; flex: 1; border: 0; outline: 0; background: transparent; caret-color: var(--accent); font-size: 23px; text-shadow: inherit; }
+    #command-input::placeholder { color: var(--dim); opacity: .8; }
+    .cursor { display: inline-block; width: 10px; height: 1em; margin-left: 4px; vertical-align: -2px; background: var(--accent); animation: blink 1s steps(2, start) infinite; }
+    .hint { margin: 7px 0 0 4px; color: var(--dim); font-size: 18px; }
+    body.flicker::before { content: ""; position: fixed; z-index: 4; inset: 0; pointer-events: none; background: var(--fg); opacity: 0; animation: channel .32s steps(4) both; }
+    @keyframes blink { to { visibility: hidden; } }
+    @keyframes channel { 0%, 100% { opacity: 0; } 20% { opacity: .28; } 45% { opacity: .04; } 70% { opacity: .18; } }
+    @media (max-width: 560px) { body { font-size: 20px; } .shell { width: calc(100% - 24px); padding-top: 18px; } .topbar { font-size: 16px; } .screen { padding-top: 14px; } .cmd { min-height: 42px; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; } }
+  </style>
+</head>
+<body data-theme="default">
+  <div class="crt" aria-hidden="true"></div>
+  <main class="shell">
+    <header class="topbar"><span class="brand">[ THE REAL ARCHITECT ]</span><span class="status" id="theme-status">SIGNAL: DEFAULT</span></header>
+    <section class="screen" id="screen" aria-live="polite" aria-label="Terminal output"></section>
+    <form class="input-area" id="terminal-form" autocomplete="off">
+      <label class="prompt" for="command-input">&gt;</label>
+      <input id="command-input" name="command" type="text" spellcheck="false" autocapitalize="off" placeholder="type a command..." aria-label="Enter a terminal command">
+      <span class="cursor" aria-hidden="true"></span>
+    </form>
+    <p class="hint">ENTER: RUN &nbsp; / &nbsp; ↑↓: HISTORY &nbsp; / &nbsp; TAP ANY COMMAND</p>
+  </main>
+  <script>
+    // Edit portfolio copy, links, and available commands here.
+    const CONFIG = {
+      links: {
+        geometryDash: "https://therealarchitect-official.github.io/geometry-dash-web/",
+        munetDash: "https://therealarchitect-official.github.io/munet-dash-web/",
+        projects: "projects.html",
+        github: "https://github.com/therealarchitect-official"
+      },
+      commands: ["default", "gd", "md", "lore", "story", "credits", "help", "clear", "vault"],
+      start: [
+        "  _______ _   _ _____   _____    _    _   _ ____ _____ _   _ _____ _____ ____  ",
+        " |_   _| | | | ____| | ____|  / \\  | \\ | |  _ \\_   _| | | | ____| ____|  _ \\ ",
+        "   | | | |_| |  _|   |  _|   / _ \\ |  \\| | | | || | | |_| |  _| |  _| | |_) |",
+        "   |_|  \\___/|_____| |_|    /_/ \\_\\|_|\\__|_| |_| |_|  \\___/|_____|_____|____/ ",
+        "",
+        "                    3 PORTFOLIOS. ONE TERMINAL."
+      ].join("\n"),
+      pages: {
+        default: {
+          title: "THE REAL ARCHITECT // MAIN PORTFOLIO",
+          body: `<p>Independent creator building playful web experiences, digital spaces, and game concepts. Pick a signal to explore a different corner of the work.</p><h3>WEB PROJECTS</h3><ul><li>Boredom Slasher — an arcade-style game</li><li>ZenithOS Concept — a digital environment concept</li><li>Endless Addictive Clicker — a one-more-click experiment</li><li>Odd Spot! — a small creature hunt</li></ul><p><a href="${"${CONFIG.links.projects}"}">Browse the project collection ↗</a> &nbsp; <a href="${"${CONFIG.links.github}"}" target="_blank" rel="noopener noreferrer">GitHub ↗</a></p><p>Try <button class="cmd" data-command="gd">gd</button> or <button class="cmd" data-command="md">md</button> to switch worlds.</p>`
+        },
+        gd: {
+          title: "REALARCHITECTGD // GEOMETRY DASH ARCHIVE",
+          body: `<p>Geometry Dash ideas, levels, IDs, and collaborations — presented as a portfolio preview. Level names, IDs, and collab details can be added here as the archive is filled in.</p><h3>LEVELS / IDs</h3><p>Level archive: awaiting entries. No level IDs have been supplied for this portfolio yet.</p><h3>COLLABS</h3><p>Collaboration roster: ready for credits and contributor links.</p><p><a href="${"${CONFIG.links.geometryDash}"}" target="_blank" rel="noopener noreferrer">Open Geometry Dash Web portfolio ↗</a></p><p>Inspired by browser-based Geometry Dash creations. Enter <button class="cmd" data-command="lore">lore</button> for the origin story.</p>`
+        },
+        md: {
+          title: "ARCHITECTMUNET // MUNET DASH",
+          body: `<p>A fan-made Munet Dash Web project by TheRealArchitect, building a playable browser home for Munet Dash.</p><h3>PROJECT NOTES</h3><ul><li>Custom assets made for the Munet Dash world</li><li>Playable web project preview</li><li>Munet Dash credit: Munetios</li></ul><p><a href="${"${CONFIG.links.munetDash}"}" target="_blank" rel="noopener noreferrer">Launch Munet Dash Web preview ↗</a></p><p>Find the project origin with <button class="cmd" data-command="story">story</button> or view <button class="cmd" data-command="credits">credits</button>.</p>`
+        },
+        lore: {
+          title: "ORIGIN LOG // LORE",
+          body: `<p>It started with GDColon’s fan-made Geometry Dash running in a browser. That creative spark inspired TheRealArchitect to build a Geometry Dash portfolio and explore the game beyond the original format.</p><p>That path led to Munet Dash Web: a fan-made browser project created by TheRealArchitect, with Munet Dash credited to Munetios.</p><p>One browser experiment became three connected portfolio worlds.</p>`
+        },
+        credits: {
+          title: "CREDITS // ATTRIBUTION",
+          body: `<ul><li>Munet Dash Web = By TheRealArchitect</li><li>Geometry Dash Web = By GDColon</li><li>Munet Dash = Credits to Munetios</li></ul>`
+        },
+        vault: {
+          title: "SECRET DIRECTORY // UNLOCKED",
+          body: `<p>Access granted. One unreleased layout is hidden behind this riddle:</p><p><strong>I have four corners, but no square; I fall in time, but never land. What am I?</strong></p><p class="dim">No answer key. Some doors are better left as blueprints. Check back when the next layout escapes.</p>`
+        }
+      },
+      messages: {
+        unknown: "COMMAND NOT FOUND. Run help to list available commands.",
+        cleared: "SCREEN CLEARED. The signal is still here. Try help.",
+        help: "AVAILABLE COMMANDS"
+      }
+    };
+
+    const screen = document.querySelector("#screen");
+    const input = document.querySelector("#command-input");
+    const form = document.querySelector("#terminal-form");
+    const status = document.querySelector("#theme-status");
+    const history = [];
+    let historyIndex = 0;
+
+    function addLine(text, className = "line") {
+      const node = document.createElement("div");
+      node.className = className;
+      node.textContent = text;
+      screen.append(node);
+    }
+    function addPage(page) {
+      const article = document.createElement("article");
+      article.className = "output";
+      const heading = document.createElement("h2");
+      heading.textContent = page.title;
+      const content = document.createElement("div");
+      // Page templates are authored in CONFIG above; command text remains centralized there.
+      content.innerHTML = page.body;
+      article.append(heading, content);
+      screen.append(article);
+    }
+    function clickableCommands(commands = CONFIG.commands) {
+      const row = document.createElement("div");
+      row.className = "command-row";
+      commands.forEach(command => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "cmd";
+        button.dataset.command = command;
+        button.textContent = command;
+        row.append(button);
+      });
+      return row;
+    }
+    function renderStart() {
+      screen.replaceChildren();
+      addLine(CONFIG.start, "line banner");
+      addLine("BOOT SEQUENCE COMPLETE // WELCOME, ARCHITECT.");
+      addLine("Choose a command below, tap it, or type it and press Enter.", "line guide");
+      screen.append(clickableCommands(["default", "gd", "md", "lore", "credits", "help", "clear", "vault"]));
+      addLine("Use ↑ / ↓ to revisit commands. Type help anytime for the full menu.");
+    }
+    function switchTheme(theme) {
+      document.body.dataset.theme = theme;
+      status.textContent = `SIGNAL: ${theme.toUpperCase()}`;
+      document.body.classList.remove("flicker");
+      void document.body.offsetWidth;
+      document.body.classList.add("flicker");
+      window.setTimeout(() => document.body.classList.remove("flicker"), 350);
+    }
+    function run(raw) {
+      const command = raw.trim().toLowerCase();
+      if (!command) return;
+      addLine(`> ${command}`, "line prompt-line");
+      if (command === "clear") {
+        screen.replaceChildren();
+        addLine(CONFIG.messages.cleared);
+        return;
+      }
+      if (command === "default" || command === "gd" || command === "md") {
+        switchTheme(command);
+        addPage(CONFIG.pages[command]);
+        return;
+      }
+      if (command === "help") {
+        const article = document.createElement("article");
+        article.className = "output";
+        const heading = document.createElement("h2");
+        heading.textContent = CONFIG.messages.help;
+        article.append(heading, clickableCommands());
+        const note = document.createElement("p");
+        note.textContent = "Tap a command to run it. `story` is an alias for `lore`.";
+        article.append(note);
+        screen.append(article);
+        return;
+      }
+      if (command === "lore" || command === "story") { addPage(CONFIG.pages.lore); return; }
+      if (command === "credits") { addPage(CONFIG.pages.credits); return; }
+      if (command === "vault") { addPage(CONFIG.pages.vault); return; }
+      addLine(CONFIG.messages.unknown);
+    }
+    form.addEventListener("submit", event => {
+      event.preventDefault();
+      const value = input.value;
+      if (!value.trim()) return;
+      history.push(value.trim());
+      historyIndex = history.length;
+      run(value);
+      input.value = "";
+      screen.scrollTop = screen.scrollHeight;
+    });
+    input.addEventListener("keydown", event => {
+      if (event.key === "ArrowUp" || event.key === "ArrowDown") {
+        event.preventDefault();
+        historyIndex = event.key === "ArrowUp" ? Math.max(0, historyIndex - 1) : Math.min(history.length, historyIndex + 1);
+        input.value = history[historyIndex] || "";
+      }
+    });
+    screen.addEventListener("click", event => {
+      const button = event.target.closest("[data-command]");
+      if (!button) return;
+      run(button.dataset.command);
+      input.focus();
+      screen.scrollTop = screen.scrollHeight;
+    });
+    document.addEventListener("click", event => {
+      if (!event.target.closest("button, a, input")) input.focus();
+    });
+    renderStart();
+    input.focus();
+  </script>
+</body>
 </html>
